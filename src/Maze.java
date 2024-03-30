@@ -1,5 +1,6 @@
 /**
  * Creates a Maze made up of MazeCells
+ *
  * @author Ms. Namasivayam
  * @version 03/04/2022
  */
@@ -8,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+// By Tyler Hinkie
 
 public class Maze {
     private MazeCell[][] mazeGrid;
@@ -38,10 +41,10 @@ public class Maze {
 
             this.mazeGrid = new MazeCell[this.numRows][this.numCols];
 
-            for (int row=0; row<this.numRows; row++) {
+            for (int row = 0; row < this.numRows; row++) {
                 String line = myReader.nextLine();
 
-                for (int col=0; col<this.numCols; col++) {
+                for (int col = 0; col < this.numCols; col++) {
                     // Create a new MazeCell for each location
                     this.mazeGrid[row][col] = new MazeCell(row, col);
 
@@ -67,15 +70,15 @@ public class Maze {
      * Prints the maze and includes periods to indicate visited cells
      */
     public void printMaze() {
-        for (int row=0; row<this.numRows; row++) {
-            for (int col=0; col<this.numCols; col++) {
+        for (int row = 0; row < this.numRows; row++) {
+            for (int col = 0; col < this.numCols; col++) {
                 if (this.mazeGrid[row][col].isWall()) {
                     System.out.print("#");
                 } else if (this.startCell == this.mazeGrid[row][col]) {
                     System.out.print("A");
                 } else if (this.endCell == this.mazeGrid[row][col]) {
                     System.out.print("B");
-                } else if (this.mazeGrid[row][col].isExplored()){
+                } else if (this.mazeGrid[row][col].isExplored()) {
                     System.out.print(".");
                 } else {
                     System.out.print(" ");
@@ -91,15 +94,15 @@ public class Maze {
      * @param sol The arraylist of maze cells that make up the solution
      */
     public void printSolution(ArrayList<MazeCell> sol) {
-        for (int row=0; row<this.numRows; row++) {
-            for (int col=0; col<this.numCols; col++) {
+        for (int row = 0; row < this.numRows; row++) {
+            for (int col = 0; col < this.numCols; col++) {
                 if (this.mazeGrid[row][col].isWall()) {
                     System.out.print("#");
                 } else if (this.startCell == this.mazeGrid[row][col]) {
                     System.out.print("A");
                 } else if (this.endCell == this.mazeGrid[row][col]) {
                     System.out.print("B");
-                } else if(sol.contains(this.mazeGrid[row][col])) {
+                } else if (sol.contains(this.mazeGrid[row][col])) {
                     System.out.print("*");
                 } else {
                     System.out.print(" ");
@@ -113,8 +116,8 @@ public class Maze {
      * Reset the MazeCells to have no parent and be unvisited.
      */
     public void reset() {
-        for (int row=0; row<this.numRows; row++) {
-            for (int col=0; col<this.numCols; col++) {
+        for (int row = 0; row < this.numRows; row++) {
+            for (int col = 0; col < this.numCols; col++) {
                 MazeCell mc = this.mazeGrid[row][col];
                 mc.setParent(null);
 
@@ -126,7 +129,16 @@ public class Maze {
         }
     }
 
+
     /** Getters **/
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumCols() {
+        return numCols;
+    }
+
     public MazeCell getStartCell() {
         return this.startCell;
     }
@@ -145,8 +157,9 @@ public class Maze {
      * @param col the int col val
      * @return boolean true/false
      */
+    //
     public boolean isValidCell(int row, int col) {
-        // TODO: Complete this function
-        return true;
+        // Checks if the cell has been explored and if it's a wall
+        return !(mazeGrid[row][col].isExplored() || mazeGrid[row][col].isWall());
     }
 }

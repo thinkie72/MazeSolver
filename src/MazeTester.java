@@ -1,5 +1,6 @@
 /**
  * A class to test our MazeSolver
+ *
  * @author: Nandhini Namasivayam
  * @version: 03/04/2022
  */
@@ -31,8 +32,8 @@ public class MazeTester {
         expected.add(maze.getCell(0, 5));
 
         // Manually set parents according to our solution
-        for (int i=expected.size()-1; i>0; i--) {
-            expected.get(i).setParent(expected.get(i-1));
+        for (int i = expected.size() - 1; i > 0; i--) {
+            expected.get(i).setParent(expected.get(i - 1));
         }
 
         // Get the solution from MazeSolver
@@ -47,7 +48,7 @@ public class MazeTester {
         }
 
         // Check that each cell in the solution is the same
-        for (int i=0; i<expected.size(); i++) {
+        for (int i = 0; i < expected.size(); i++) {
             MazeCell exCell = expected.get(i);
             MazeCell recCell = received.get(i);
 

@@ -1,5 +1,6 @@
 /**
  * A class that represents a single cell of the maze.
+ *
  * @author Ms. Namasivayam
  * @version 03/10/2023
  */
@@ -19,7 +20,9 @@ public class MazeCell {
         this.parent = null;
     }
 
-    /** Getters and Setters **/
+    /**
+     * Getters and Setters
+     **/
     public boolean isExplored() {
         return this.explored;
     }
